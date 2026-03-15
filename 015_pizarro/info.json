@@ -1,0 +1,16 @@
+{
+  "id": 15,
+  "slug": "pizarro",
+  "name": "Pizarro",
+  "directory_area": "Bermondsey",
+  "cover_image": "cover.jpg",
+  "folder_name": "015_pizarro",
+  "naming_scheme": "<restaurant>-<category>-<number>.<ext>",
+  "categories": {
+    "chef": 1,
+    "drinks": 2,
+    "food": 13,
+    "interior": 3
+  },
+  "metadata_note": "Categories were inferred from the images during manual review. Cuisine, address, and price were not verified from external sources."
+}

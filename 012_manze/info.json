@@ -1,0 +1,17 @@
+{
+  "id": 12,
+  "slug": "manze",
+  "name": "Manze",
+  "directory_area": "Bermondsey",
+  "cover_image": "cover.jpg",
+  "folder_name": "012_manze",
+  "naming_scheme": "<restaurant>-<category>-<number>.<ext>",
+  "categories": {
+    "branding": 1,
+    "exterior": 2,
+    "food": 1,
+    "interior": 1,
+    "people": 1
+  },
+  "metadata_note": "Categories were inferred from the images during manual review. Cuisine, address, and price were not verified from external sources."
+}

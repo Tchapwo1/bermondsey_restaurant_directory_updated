@@ -1,0 +1,16 @@
+{
+  "id": 11,
+  "slug": "lolo",
+  "name": "Lolo",
+  "directory_area": "Bermondsey",
+  "cover_image": "cover.jpg",
+  "folder_name": "011_lolo",
+  "naming_scheme": "<restaurant>-<category>-<number>.<ext>",
+  "categories": {
+    "branding": 1,
+    "chef": 4,
+    "food": 7,
+    "interior": 7
+  },
+  "metadata_note": "Categories were inferred from the images during manual review. Cuisine, address, and price were not verified from external sources."
+}

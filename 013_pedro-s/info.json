@@ -1,0 +1,17 @@
+{
+  "id": 13,
+  "slug": "pedro-s",
+  "name": "Pedro's",
+  "directory_area": "Bermondsey",
+  "cover_image": "cover.jpg",
+  "folder_name": "013_pedro-s",
+  "naming_scheme": "<restaurant>-<category>-<number>.<ext>",
+  "categories": {
+    "exterior": 1,
+    "food": 4,
+    "interior": 2,
+    "menu": 1,
+    "people": 1
+  },
+  "metadata_note": "Categories were inferred from the images during manual review. Cuisine, address, and price were not verified from external sources."
+}

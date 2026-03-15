@@ -1,0 +1,14 @@
+{
+  "id": 4,
+  "slug": "cafe-murano",
+  "name": "Cafe Murano",
+  "directory_area": "Bermondsey",
+  "cover_image": "cover.jpg",
+  "folder_name": "004_cafe-murano",
+  "naming_scheme": "<restaurant>-<category>-<number>.<ext>",
+  "categories": {
+    "food": 3,
+    "interior": 2
+  },
+  "metadata_note": "Categories were inferred from the images during manual review. Cuisine, address, and price were not verified from external sources."
+}

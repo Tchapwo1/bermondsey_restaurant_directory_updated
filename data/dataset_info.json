@@ -1,0 +1,9 @@
+{
+  "dataset_name": "Bermondsey Restaurant Directory",
+  "city": "London",
+  "area": "Bermondsey",
+  "country": "United Kingdom",
+  "restaurant_count": 21,
+  "dataset_version": "1.2",
+  "created_year": 2026
+}

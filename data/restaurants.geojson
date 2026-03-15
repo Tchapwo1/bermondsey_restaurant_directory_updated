@@ -1,0 +1,289 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0805,
+          51.498
+        ]
+      },
+      "properties": {
+        "restaurant_id": "rest_001",
+        "name": "Baccal\u00e0 London",
+        "cuisine": [
+          "italian seafood restaurant",
+          "wine bar"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.078,
+          51.499
+        ]
+      },
+      "properties": {
+        "restaurant_id": "rest_002",
+        "name": "Cafe Amisha",
+        "cuisine": [
+          "italian"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.081,
+          51.501
+        ]
+      },
+      "properties": {
+        "restaurant_id": "rest_003",
+        "name": "Casse Cro\u00fbte",
+        "cuisine": [
+          "french bistro"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.047,
+          51.496
+        ]
+      },
+      "properties": {
+        "restaurant_id": "rest_004",
+        "name": "Dockley Road",
+        "cuisine": [
+          "british"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.081,
+          51.502
+        ]
+      },
+      "properties": {
+        "restaurant_id": "rest_005",
+        "name": "Fleurie",
+        "cuisine": [
+          "french brasserie"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.084,
+          51.5015
+        ]
+      },
+      "properties": {
+        "restaurant_id": "rest_006",
+        "name": "Andanza",
+        "cuisine": [
+          "spanish",
+          "basque"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0805, 51.498]
+      },
+      "properties": {
+        "restaurant_id": "rest_007",
+        "name": "Cafe Murano",
+        "cuisine": ["italian"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0815, 51.501]
+      },
+      "properties": {
+        "restaurant_id": "rest_008",
+        "name": "Hakata Ramen + Bar",
+        "cuisine": ["japanese", "ramen"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0819, 51.5006]
+      },
+      "properties": {
+        "restaurant_id": "rest_009",
+        "name": "José Tapas Bar",
+        "cuisine": ["spanish", "tapas"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0805, 51.498]
+      },
+      "properties": {
+        "restaurant_id": "rest_010",
+        "name": "Pizarro",
+        "cuisine": ["spanish"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0777, 51.4997]
+      },
+      "properties": {
+        "restaurant_id": "rest_011",
+        "name": "Lolo",
+        "cuisine": ["spanish", "breakfast"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0828, 51.4965]
+      },
+      "properties": {
+        "restaurant_id": "rest_012",
+        "name": "M.Manze",
+        "cuisine": ["british", "pie and mash"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0754, 51.4994]
+      },
+      "properties": {
+        "restaurant_id": "rest_013",
+        "name": "Pedro's Wine & Tapas",
+        "cuisine": ["spanish", "mexican"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0766, 51.4988]
+      },
+      "properties": {
+        "restaurant_id": "rest_014",
+        "name": "Pique-Nique",
+        "cuisine": ["french"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0767, 51.4991]
+      },
+      "properties": {
+        "restaurant_id": "rest_015",
+        "name": "Sentosa",
+        "cuisine": ["malaysian", "pan-asian"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0778, 51.5028]
+      },
+      "properties": {
+        "restaurant_id": "rest_016",
+        "name": "Restaurant Story",
+        "cuisine": ["british", "fine dining"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0841, 51.502]
+      },
+      "properties": {
+        "restaurant_id": "rest_017",
+        "name": "Texas Joe's Slow Cooked BBQ",
+        "cuisine": ["american", "bbq"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.081, 51.501]
+      },
+      "properties": {
+        "restaurant_id": "rest_018",
+        "name": "The Garrison",
+        "cuisine": ["british", "gastropub"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0827, 51.4965]
+      },
+      "properties": {
+        "restaurant_id": "rest_019",
+        "name": "Tower Tandoori",
+        "cuisine": ["indian"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0842, 51.502]
+      },
+      "properties": {
+        "restaurant_id": "rest_020",
+        "name": "Trivet",
+        "cuisine": ["modern european"]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.0829, 51.4962]
+      },
+      "properties": {
+        "restaurant_id": "rest_021",
+        "name": "Le Chevalier",
+        "cuisine": ["french", "wine bar"]
+      }
+    }
+  ]
+}

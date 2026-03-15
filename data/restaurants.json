@@ -1,0 +1,640 @@
+[
+  {
+    "restaurant_id": "rest_001",
+    "slug": "baccala",
+    "restaurant_name": "Baccal\u00e0 London",
+    "address": "194\u2013204 Bermondsey Street Unit B3",
+    "postcode": "SE1 3TQ",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.498,
+      "lng": -0.0805
+    },
+    "phone_number": "+44 20 7407 5514",
+    "website": "https://www.baccalalondon.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=194-204%20Bermondsey%20Street%20London%20SE1%203TQ",
+    "cuisine_type": [
+      "italian seafood restaurant",
+      "wine bar"
+    ],
+    "price_range": 5,
+    "services": [
+      "dine-in"
+    ],
+    "opening_hours_raw": "Tue\u2013Wed 12:00\u201317:00 / 18:00\u201321:00; Thu\u2013Sat 12:00\u201317:00 / 18:00\u201321:30",
+    "description_short": "Italian seafood restaurant and wine bar specialising in fresh seafood, handmade pasta and Italian wines.",
+    "menu_specialties": [
+      "oysters",
+      "seafood pasta",
+      "roasted sea bream"
+    ],
+    "ratings": {
+      "tripadvisor": {
+        "value": 4.5,
+        "review_count": 89
+      }
+    },
+    "social_links": [
+      "https://www.instagram.com/baccalalondon/"
+    ],
+    "tags": [
+      "italian",
+      "seafood",
+      "wine bar"
+    ]
+  },
+  {
+    "restaurant_id": "rest_002",
+    "slug": "cafe-amisha",
+    "restaurant_name": "Cafe Amisha",
+    "address": "161 Grange Road",
+    "postcode": "SE1 3GH",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.499,
+      "lng": -0.078
+    },
+    "phone_number": "+44 20 7231 7151",
+    "website": "https://www.cafeamisha.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=161%20Grange%20Road%20London%20SE1%203GH",
+    "cuisine_type": [
+      "italian"
+    ],
+    "price_range": 5,
+    "services": [
+      "dine-in",
+      "takeaway",
+      "delivery"
+    ],
+    "opening_hours_raw": "Tue\u2013Sat 12:00\u201322:30; Sun 12:00\u201321:00",
+    "description_short": "Italian restaurant serving traditional pasta, pizza and classic desserts.",
+    "menu_specialties": [
+      "carbonara",
+      "wood-fired pizza",
+      "seafood risotto",
+      "tiramisu"
+    ],
+    "ratings": {
+      "tripadvisor": {
+        "value": 4.7,
+        "review_count": 486
+      }
+    },
+    "social_links": [
+      "https://www.facebook.com/p/Cafe-Amisha-100063625329594/"
+    ],
+    "tags": [
+      "italian",
+      "pizza"
+    ]
+  },
+  {
+    "restaurant_id": "rest_003",
+    "slug": "casse-croute",
+    "restaurant_name": "Casse Cro\u00fbte",
+    "address": "109 Bermondsey Street",
+    "postcode": "SE1 3XB",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.501,
+      "lng": -0.081
+    },
+    "phone_number": "+44 20 7407 2140",
+    "website": "https://www.cassecroute.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=109%20Bermondsey%20Street%20London%20SE1%203XB",
+    "cuisine_type": [
+      "french bistro"
+    ],
+    "price_range": 5,
+    "services": [
+      "dine-in"
+    ],
+    "opening_hours_raw": "Mon\u2013Sat lunch 12:00; dinner 18:00",
+    "description_short": "Traditional French bistro known for seasonal dishes and daily-changing menus.",
+    "menu_specialties": [
+      "seasonal bistro dishes"
+    ],
+    "ratings": {
+      "tripadvisor": {
+        "value": 4.4,
+        "review_count": 652
+      }
+    },
+    "social_links": [
+      "https://www.instagram.com/cassecroute109/"
+    ],
+    "tags": [
+      "french",
+      "bistro"
+    ]
+  },
+  {
+    "restaurant_id": "rest_004",
+    "slug": "dockley-road",
+    "restaurant_name": "Dockley Road",
+    "address": "1 Dockley Road",
+    "postcode": "SE16 3AF",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.496,
+      "lng": -0.047
+    },
+    "phone_number": null,
+    "website": "https://www.dockleyroad.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=1%20Dockley%20Road%20London%20SE16%203AF",
+    "cuisine_type": [
+      "british"
+    ],
+    "price_range": null,
+    "services": [
+      "dine-in"
+    ],
+    "opening_hours_raw": "Wed\u2013Thu 17:30\u201321:00; Fri\u2013Sat 12:00\u201314:30 / 17:30\u201321:00; Sun 12:00\u201315:00",
+    "description_short": "Neighbourhood restaurant at Spa Terminus serving seasonal British dishes.",
+    "menu_specialties": [
+      "ox tongue rag\u00f9",
+      "chicken pie",
+      "plaice"
+    ],
+    "ratings": {
+      "tripadvisor": {
+        "value": 5,
+        "review_count": 2
+      }
+    },
+    "social_links": [
+      "https://www.instagram.com/dockleyroad/?hl=en"
+    ],
+    "tags": [
+      "british",
+      "seasonal"
+    ]
+  },
+  {
+    "restaurant_id": "rest_005",
+    "slug": "fleurie-bermondsey",
+    "restaurant_name": "Fleurie",
+    "address": "92 Bermondsey Street",
+    "postcode": "SE1 3UB",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.502,
+      "lng": -0.081
+    },
+    "phone_number": "+44 20 3763 5292",
+    "website": "https://www.fleurie.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=92%20Bermondsey%20Street%20London%20SE1%203UB",
+    "cuisine_type": [
+      "french brasserie"
+    ],
+    "price_range": null,
+    "services": [
+      "dine-in"
+    ],
+    "opening_hours_raw": "Mon\u2013Fri 12:00\u201323:00; Sat 11:00\u201323:00; Sun 11:00\u201322:30",
+    "description_short": "French-style brasserie serving seasonal plates with wine and cocktails.",
+    "menu_specialties": [
+      "seasonal plates",
+      "wine"
+    ],
+    "ratings": {
+      "dishcult": {
+        "value": 4.82,
+        "review_count": 158
+      }
+    },
+    "social_links": [
+      "https://www.instagram.com/fleurie.bermondsey/"
+    ],
+    "tags": [
+      "french",
+      "wine bar"
+    ]
+  },
+  {
+    "restaurant_id": "rest_006",
+    "slug": "andanza",
+    "restaurant_name": "Andanza",
+    "address": "66 Weston Street",
+    "postcode": "SE1 3ST",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.5015,
+      "lng": -0.084
+    },
+    "phone_number": "+44 20 7967 1972",
+    "website": "https://www.andanza.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=66%20Weston%20Street%20London%20SE1%203ST",
+    "cuisine_type": ["spanish", "basque"],
+    "price_range": 5,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Mon\u2013Sat 12:00\u201323:00",
+    "description_short": "Basque-inspired pintxos bar focused on Spanish sharing dishes.",
+    "menu_specialties": ["pintxos", "jamon", "croquetas"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 51}},
+    "social_links": ["https://www.instagram.com/andanza.se1/"],
+    "tags": ["spanish", "tapas"]
+  },
+  {
+    "restaurant_id": "rest_007",
+    "slug": "cafe-murano",
+    "restaurant_name": "Cafe Murano",
+    "address": "184 Bermondsey Street",
+    "postcode": "SE1 3TQ",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.498,
+      "lng": -0.0805
+    },
+    "phone_number": "+44 20 7234 0880",
+    "website": "https://www.cafemurano.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=184%20Bermondsey%20Street%20London%20SE1%203TQ",
+    "cuisine_type": ["italian"],
+    "price_range": 4,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Mon\u2013Sat 12:00\u201322:30; Sun 12:00\u201321:00",
+    "description_short": "Angela Hartnett's sophisticated northern Italian cooking in a relaxed setting.",
+    "menu_specialties": ["truffle arancini", "wild boar ragu", "focaccia"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 1200}},
+    "social_links": ["https://www.instagram.com/cafemurano/"],
+    "tags": ["italian", "pasta"]
+  },
+  {
+    "restaurant_id": "rest_008",
+    "slug": "hakata",
+    "restaurant_name": "Hakata Ramen + Bar",
+    "address": "177 Bermondsey Street",
+    "postcode": "SE1 3UW",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.501,
+      "lng": -0.0815
+    },
+    "phone_number": null,
+    "website": "https://www.hakata.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=177%20Bermondsey%20Street%20London%20SE1%203UW",
+    "cuisine_type": ["japanese", "ramen"],
+    "price_range": 3,
+    "services": ["dine-in", "takeaway"],
+    "opening_hours_raw": "Mon\u2013Sat 12:00\u201322:00; Sun 12:00\u201321:00",
+    "description_short": "Independent ramen bar and basement cocktail lounge serving tonkotsu ramen.",
+    "menu_specialties": ["tonkotsu ramen", "hirata buns", "gyoza"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 150}},
+    "social_links": ["https://www.instagram.com/hakata_london/"],
+    "tags": ["japanese", "ramen", "cocktails"]
+  },
+  {
+    "restaurant_id": "rest_009",
+    "slug": "jose",
+    "restaurant_name": "José Tapas Bar",
+    "address": "104 Bermondsey Street",
+    "postcode": "SE1 3UB",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.5006,
+      "lng": -0.0819
+    },
+    "phone_number": null,
+    "website": "https://josepizarro.com/jose-tapas-bar-bermondsey/",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=104%20Bermondsey%20Street%20London%20SE1%203UB",
+    "cuisine_type": ["spanish", "tapas"],
+    "price_range": 4,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Mon\u2013Sun 12:00\u201323:00",
+    "description_short": "José Pizarro's bustling corner tapas bar serving classic small plates and sherry.",
+    "menu_specialties": ["croquetas", "jamon iberico", "patatas bravas"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 850}},
+    "social_links": ["https://www.instagram.com/jose_pizarro/"],
+    "tags": ["spanish", "tapas", "sherry"]
+  },
+  {
+    "restaurant_id": "rest_010",
+    "slug": "pizarro",
+    "restaurant_name": "Pizarro",
+    "address": "194 Bermondsey Street",
+    "postcode": "SE1 3TQ",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.498,
+      "lng": -0.0805
+    },
+    "phone_number": "+44 20 7378 9455",
+    "website": "https://josepizarro.com/pizarro-restaurant-bermondsey/",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=194%20Bermondsey%20Street%20London%20SE1%203TQ",
+    "cuisine_type": ["spanish"],
+    "price_range": 4,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Mon\u2013Sat 12:00\u201323:00; Sun 12:00\u201321:00",
+    "description_short": "Larger restaurant from José Pizarro serving more substantial Spanish dishes.",
+    "menu_specialties": ["preso iberico", "pan con tomate", "salt cod"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 920}},
+    "social_links": ["https://www.instagram.com/jose_pizarro/"],
+    "tags": ["spanish", "fine dining"]
+  },
+  {
+    "restaurant_id": "rest_011",
+    "slug": "lolo",
+    "restaurant_name": "Lolo",
+    "address": "102 Bermondsey Street",
+    "postcode": "SE1 3UB",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.4997,
+      "lng": -0.0777
+    },
+    "phone_number": null,
+    "website": "https://josepizarro.com/lolo-bermondsey/",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=102%20Bermondsey%20Street%20London%20SE1%203UB",
+    "cuisine_type": ["spanish", "breakfast"],
+    "price_range": 3,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Mon\u2013Sun 08:00\u201323:00",
+    "description_short": "José Pizarro's 'Lolo' offers all-day Spanish dining from breakfast to dinner.",
+    "menu_specialties": ["eggs and sobrasada", "bocadillos", "daily specials"],
+    "ratings": {"tripadvisor": {"value": 4.0, "review_count": 25}},
+    "social_links": ["https://www.instagram.com/jose_pizarro/"],
+    "tags": ["spanish", "all-day", "breakfast"]
+  },
+  {
+    "restaurant_id": "rest_012",
+    "slug": "manze",
+    "restaurant_name": "M.Manze",
+    "address": "87 Tower Bridge Road",
+    "postcode": "SE1 4TW",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.4965,
+      "lng": -0.0828
+    },
+    "phone_number": "+44 20 7407 2985",
+    "website": "https://www.manze.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=87%20Tower%20Bridge%20Road%20London%20SE1%204TW",
+    "cuisine_type": ["british", "pie and mash"],
+    "price_range": 2,
+    "services": ["dine-in", "takeaway"],
+    "opening_hours_raw": "Mon\u2013Sat 10:30\u201318:00",
+    "description_short": "Famous, historic pie and mash shop established in 1902.",
+    "menu_specialties": ["pie and mash", "liquor", "jellied eels"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 480}},
+    "social_links": [],
+    "tags": ["traditional", "historic", "pie and mash"]
+  },
+  {
+    "restaurant_id": "rest_013",
+    "slug": "pedro-s",
+    "restaurant_name": "Pedro's Wine & Tapas",
+    "address": "128 Druid Street",
+    "postcode": "SE1 2HH",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.4994,
+      "lng": -0.0754
+    },
+    "phone_number": null,
+    "website": "https://www.pedrosbermondsey.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=128%20Druid%20Street%20London%20SE1%202HH",
+    "cuisine_type": ["spanish", "mexican"],
+    "price_range": 3,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Wed\u2013Sat 12:00\u201323:00",
+    "description_short": "Lively wine and tapas bar located under the railway arches in Bermondsey.",
+    "menu_specialties": ["tacos", "tapas sharing plates", "spanish wine"],
+    "ratings": {"google": {"value": 4.6, "review_count": 210}},
+    "social_links": ["https://www.instagram.com/pedrosbermondsey/"],
+    "tags": ["archway", "tapas", "latin"]
+  },
+  {
+    "restaurant_id": "rest_014",
+    "slug": "pique-nique",
+    "restaurant_name": "Pique-Nique",
+    "address": "Tanner Street Park",
+    "postcode": "SE1 3LD",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.4988,
+      "lng": -0.0766
+    },
+    "phone_number": "+44 20 7403 9548",
+    "website": "http://pique-nique.co.uk/",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=Tanner%20Street%20Park%20London%20SE1%203LD",
+    "cuisine_type": ["french"],
+    "price_range": 4,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Mon\u2013Sat lunch 12:00; dinner 18:00",
+    "description_short": "Sister restaurant to Casse-Croûte, located in the former park pavilion.",
+    "menu_specialties": ["rotisserie chicken", "seasonal french tarts"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 310}},
+    "social_links": ["https://www.instagram.com/piquenique109/"],
+    "tags": ["french", "park location"]
+  },
+  {
+    "restaurant_id": "rest_015",
+    "slug": "sentosa",
+    "restaurant_name": "Sentosa",
+    "address": "208 Bermondsey Street",
+    "postcode": "SE1 3TQ",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.4991,
+      "lng": -0.0767
+    },
+    "phone_number": "+44 20 7403 6668",
+    "website": "https://www.sentosarestaurant.com",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=208%20Bermondsey%20Street%20London%20SE1%203TQ",
+    "cuisine_type": ["malaysian", "pan-asian"],
+    "price_range": 3,
+    "services": ["dine-in", "takeaway", "delivery"],
+    "opening_hours_raw": "Mon\u2013Sun 12:00\u201323:00",
+    "description_short": "Authentic Malaysian and pan-Asian cuisine in a contemporary setting.",
+    "menu_specialties": ["nasi lemak", "laksa", "beef rendang"],
+    "ratings": {"tripadvisor": {"value": 4.0, "review_count": 180}},
+    "social_links": [],
+    "tags": ["malaysian", "asian", "affordable"]
+  },
+  {
+    "restaurant_id": "rest_016",
+    "slug": "story",
+    "restaurant_name": "Restaurant Story",
+    "address": "199 Tooley Street",
+    "postcode": "SE1 2JX",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.5028,
+      "lng": -0.0778
+    },
+    "phone_number": "+44 20 7183 2117",
+    "website": "https://restaurantstory.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=199%20Tooley%20Street%20London%20SE1%202JX",
+    "cuisine_type": ["british", "fine dining"],
+    "price_range": 10,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Tue\u2013Sat lunch 12:00; dinner 18:00",
+    "description_short": "Two Michelin-starred restaurant by Tom Sellers serving narrative-driven tasting menus.",
+    "menu_specialties": ["beef fat candle", "seasonal tasting menu"],
+    "ratings": {"michelin": {"value": 2, "review_count": 0}},
+    "social_links": ["https://www.instagram.com/rest_story/"],
+    "tags": ["michelin star", "fine dining", "experience"]
+  },
+  {
+    "restaurant_id": "rest_017",
+    "slug": "texas-joe",
+    "restaurant_name": "Texas Joe's Slow Cooked BBQ",
+    "address": "8-9 Snowsfields",
+    "postcode": "SE1 3SU",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.502,
+      "lng": -0.0841
+    },
+    "phone_number": "+44 20 3011 0767",
+    "website": "https://texas-joes.com",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=8-9%20Snowsfields%20London%20SE1%203SU",
+    "cuisine_type": ["american", "bbq"],
+    "price_range": 4,
+    "services": ["dine-in", "takeaway"],
+    "opening_hours_raw": "Tue\u2013Sun 12:00\u201322:30",
+    "description_short": "Authentic Texas-style barbecue smoked low and slow over oak.",
+    "menu_specialties": ["beef brisket", "pork ribs", "cornbread"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 420}},
+    "social_links": ["https://www.instagram.com/texasjoes/"],
+    "tags": ["bbq", "american", "meat"]
+  },
+  {
+    "restaurant_id": "rest_018",
+    "slug": "the-garisson",
+    "restaurant_name": "The Garrison",
+    "address": "99-101 Bermondsey Street",
+    "postcode": "SE1 3XB",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey Street",
+    "coordinates": {
+      "lat": 51.501,
+      "lng": -0.081
+    },
+    "phone_number": "+44 20 7089 9355",
+    "website": "https://thegarrison.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=99-101%20Bermondsey%20Street%20London%20SE1%203XB",
+    "cuisine_type": ["british", "gastropub"],
+    "price_range": 4,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Mon\u2013Sat 09:00\u201323:00; Sun 10:00\u201322:30",
+    "description_short": "Charming gastropub with a focus on seasonal British produce.",
+    "menu_specialties": ["sunday roast", "scotch egg", "fish and chips"],
+    "ratings": {"tripadvisor": {"value": 4.0, "review_count": 680}},
+    "social_links": ["https://www.instagram.com/thegarrisonpub/"],
+    "tags": ["pub", "gastropub", "seasonal"]
+  },
+  {
+    "restaurant_id": "rest_019",
+    "slug": "tower-tandoori",
+    "restaurant_name": "Tower Tandoori",
+    "address": "74-76 Tower Bridge Road",
+    "postcode": "SE1 4TP",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.4965,
+      "lng": -0.0827
+    },
+    "phone_number": "+44 20 7237 2247",
+    "website": "https://www.towertandoori.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=74-76%20Tower%20Bridge%20Road%20London%20SE1%204TP",
+    "cuisine_type": ["indian"],
+    "price_range": 3,
+    "services": ["dine-in", "takeaway", "delivery"],
+    "opening_hours_raw": "Mon\u2013Sun 12:00\u201323:30",
+    "description_short": "Long-established Indian restaurant serving classic tandoori and curry dishes.",
+    "menu_specialties": ["tandoori chicken", "lamb rogan josh", "naan bread"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 520}},
+    "social_links": ["https://www.instagram.com/towertandoori/"],
+    "tags": ["indian", "curry", "traditional"]
+  },
+  {
+    "restaurant_id": "rest_020",
+    "slug": "trivet",
+    "restaurant_name": "Trivet",
+    "address": "36 Snowsfields",
+    "postcode": "SE1 3SU",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.502,
+      "lng": -0.0842
+    },
+    "phone_number": "+44 20 3141 8670",
+    "website": "https://trivetrestaurant.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=36%20Snowsfields%20London%20SE1%203SU",
+    "cuisine_type": ["modern european"],
+    "price_range": 8,
+    "services": ["dine-in"],
+    "opening_hours_raw": "Tue\u2013Sat 12:00\u201314:30 / 18:00\u201321:30",
+    "description_short": "Michelin-starred restaurant from Fat Duck alumni Jonny Lake and Isa Bal.",
+    "menu_specialties": ["baked potato mille-feuille", "seasonal mains", "extensive wine list"],
+    "ratings": {"michelin": {"value": 1, "review_count": 0}},
+    "social_links": ["https://www.instagram.com/trivetrestaurant/"],
+    "tags": ["michelin star", "modern european", "wine"]
+  },
+  {
+    "restaurant_id": "rest_021",
+    "slug": "le-chevalier",
+    "restaurant_name": "Le Chevalier",
+    "address": "85 Tower Bridge Road",
+    "postcode": "SE1 4TW",
+    "city": "London",
+    "country": "United Kingdom",
+    "neighbourhood": "Bermondsey",
+    "coordinates": {
+      "lat": 51.4962,
+      "lng": -0.0829
+    },
+    "phone_number": "+44 20 7407 1974",
+    "website": "https://www.lechevalier.co.uk",
+    "google_maps_link": "https://www.google.com/maps/search/?api=1&query=85%20Tower%20Bridge%20Road%20London%20SE1%204TW",
+    "cuisine_type": ["french", "wine bar"],
+    "price_range": 4,
+    "services": ["dine-in", "takeaway"],
+    "opening_hours_raw": "Tue\u2013Sat 11:00\u201322:00",
+    "description_short": "Elegant wine bar and merchant offering curated French wines and charcuterie.",
+    "menu_specialties": ["french cheese board", "charcuterie", "vins de terroir"],
+    "ratings": {"tripadvisor": {"value": 4.5, "review_count": 35}},
+    "social_links": ["https://www.instagram.com/lechevalierse1/"],
+    "tags": ["wine bar", "french", "delicatessen"]
+  }
+]
