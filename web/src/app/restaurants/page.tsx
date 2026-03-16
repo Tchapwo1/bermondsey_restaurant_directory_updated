@@ -3,12 +3,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RestaurantCard from '@/components/RestaurantCard';
 import Link from 'next/link';
-import dynamicImport from 'next/dynamic';
+import MapClient from '@/components/MapClient';
 
-const RestaurantMap = dynamicImport(() => import('@/components/RestaurantMap'), { 
-  ssr: false,
-  loading: () => <div className="w-full h-[600px] bg-slate-100 animate-pulse rounded-3xl flex items-center justify-center text-slate-400 font-bold uppercase tracking-widest">Loading Interactive Map...</div>
-});
+// No longer needs local dynamicImport as it's handled in MapClient
 
 export const dynamic = 'force-dynamic';
 
@@ -206,7 +203,7 @@ export default async function RestaurantsPage({
             </div>
 
             {view === 'map' ? (
-              <RestaurantMap restaurants={restaurants || []} />
+              <MapClient restaurants={restaurants || []} />
             ) : (
               <>
                 {restaurants && restaurants.length > 0 ? (
