@@ -14,12 +14,34 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     // Middleware handles route protection and role check server-side.
-    // We just fetch data here.
-    fetchRestaurants();
+    // We add a client-side check for defense-in-depth and better UX.
+    checkRole();
   }, []);
 
-  async function fetchRestaurants() {
+  async function checkRole() {
     setLoading(true);
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+      router.push('/login?error=Session Expired');
+      return;
+    }
+
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+
+    if (!profile || profile.role !== 'admin') {
+      router.push('/login?error=Access Denied');
+      return;
+    }
+
+    await fetchRestaurants();
+  }
+
+  async function fetchRestaurants() {
     const { data, error } = await supabase
       .from('restaurants')
       .select('*')

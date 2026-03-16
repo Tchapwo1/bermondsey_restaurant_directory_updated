@@ -8,9 +8,17 @@ export async function updateSession(request: NextRequest) {
     },
   })
 
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  if (!url || !anonKey) {
+    console.error('Middleware Error: Supabase credentials missing.')
+    return response // If config is broken, we might want to return 500 or redirect to error page, but let's at least not crash.
+  }
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    url,
+    anonKey,
     {
       cookies: {
         get(name: string) {
@@ -29,27 +37,38 @@ export async function updateSession(request: NextRequest) {
   )
 
   try {
-    const { data: { user } } = await supabase.auth.getUser()
+    const { data: { user }, error: userError } = await supabase.auth.getUser()
+    
+    // PROTECT ROUTES
+    const isFavoritesRoute = request.nextUrl.pathname.startsWith('/favorites')
+    const isAdminRoute = request.nextUrl.pathname.startsWith('/admin')
 
-    // PROTECT /admin ROUTES
-    if (request.nextUrl.pathname.startsWith('/admin')) {
-      if (!user) {
+    if (isFavoritesRoute || isAdminRoute) {
+      // REQUIRE LOGGED IN USER FOR BOTH
+      if (userError || !user) {
         return NextResponse.redirect(new URL('/login?error=Session Expired', request.url))
       }
 
-      // CHECK ROLE
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', user.id)
-        .single()
+      // ADDITIONAL CHECK FOR ADMIN ONLY
+      if (isAdminRoute) {
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', user.id)
+          .single()
 
-      if (!profile || profile.role !== 'admin') {
-        return NextResponse.redirect(new URL('/login?error=Access Denied', request.url))
+        if (profileError || !profile || profile.role !== 'admin') {
+          console.warn(`Unauthorized access attempt to /admin by ${user.email}`)
+          return NextResponse.redirect(new URL('/login?error=Access Denied', request.url))
+        }
       }
     }
   } catch (err) {
-    console.error('Middleware Error:', err)
+    console.error('Middleware Critical Error:', err)
+    // If we're on an admin route and something breaks, we MUST fail-closed.
+    if (request.nextUrl.pathname.startsWith('/admin')) {
+      return NextResponse.redirect(new URL('/login?error=Security Error', request.url))
+    }
   }
 
   return response

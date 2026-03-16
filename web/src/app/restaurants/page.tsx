@@ -14,7 +14,7 @@ export const dynamic = 'force-dynamic';
 export default async function RestaurantsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ query?: string; category?: string; price?: string; sort?: string; view?: string }>;
+  searchParams: Promise<{ query?: string; category?: string; price?: string; sort?: string; view?: string; neighborhood?: string }>;
 }) {
   const params = await searchParams;
   const supabase = await createClient();
@@ -23,6 +23,7 @@ export default async function RestaurantsPage({
   const price = params.price ? parseInt(params.price) : undefined;
   const sort = params.sort || 'name';
   const view = params.view || 'grid';
+  const neighborhood = params.neighborhood;
 
   let supabaseQuery = supabase.from('restaurants').select('*');
 
@@ -38,15 +39,20 @@ export default async function RestaurantsPage({
     supabaseQuery = supabaseQuery.eq('price_range', price);
   }
 
+  if (neighborhood) {
+    supabaseQuery = supabaseQuery.eq('neighbourhood', neighborhood);
+  }
+
   // Handle status if applicable (e.g. only show active)
   // supabaseQuery = supabaseQuery.eq('status', 'active');
 
-  // Apply sorting
+  // Apply sorting with null-safety
   if (sort === 'rating') {
     // Rating is stored in a JSONB field: ratings->tripadvisor->value
-    supabaseQuery = supabaseQuery.order('ratings->tripadvisor->value', { ascending: false });
+    // We use coalesce to treat null/missing ratings as 0 for stable high-to-low sorting
+    supabaseQuery = supabaseQuery.order('ratings->tripadvisor->value', { ascending: false, nullsFirst: false });
   } else if (sort === 'rating_low') {
-    supabaseQuery = supabaseQuery.order('ratings->tripadvisor->value', { ascending: true });
+    supabaseQuery = supabaseQuery.order('ratings->tripadvisor->value', { ascending: true, nullsFirst: true });
   } else {
     supabaseQuery = supabaseQuery.order('name', { ascending: true });
   }
@@ -72,6 +78,7 @@ export default async function RestaurantsPage({
     if (query) newParams.set('query', query);
     if (category) newParams.set('category', category);
     if (price) newParams.set('price', price.toString());
+    if (neighborhood) newParams.set('neighborhood', neighborhood);
     if (sort && sort !== 'name') newParams.set('sort', sort);
 
     Object.entries(extraParams).forEach(([key, value]) => {
@@ -155,6 +162,25 @@ export default async function RestaurantsPage({
 
               <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/5 shadow-xl">
                 <h2 className="text-lg font-black mb-6 flex items-center gap-2 uppercase tracking-tight">
+                  <span className="material-symbols-outlined text-primary">location_on</span>
+                  Zones
+                </h2>
+                <div className="space-y-3">
+                  {['Bermondsey Street', 'Maltby Street', 'The Blue', 'Shad Thames'].map(nbh => (
+                    <Link 
+                      key={nbh} 
+                      href={getFilterUrl({ neighborhood: params.neighborhood === nbh ? undefined : nbh })}
+                      className={`flex items-center gap-3 group transition-colors ${params.neighborhood === nbh ? 'text-primary font-bold' : 'text-slate-600 dark:text-slate-400'}`}
+                    >
+                      <div className={`size-2 rounded-full ${params.neighborhood === nbh ? 'bg-primary' : 'bg-slate-200 dark:bg-slate-700'} group-hover:bg-primary transition-colors`}></div>
+                      <span className="group-hover:text-primary transition-colors">{nbh}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/5 shadow-xl">
+                <h2 className="text-lg font-black mb-6 flex items-center gap-2 uppercase tracking-tight">
                   <span className="material-symbols-outlined text-primary">payments</span>
                   Price Range
                 </h2>
@@ -171,7 +197,7 @@ export default async function RestaurantsPage({
                 </div>
               </div>
 
-              {(query || category || price || (sort && sort !== 'name')) && (
+              {(query || category || price || neighborhood || (sort && sort !== 'name')) && (
                 <Link href="/restaurants" className="flex items-center justify-center gap-2 w-full py-3 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-slate-200 transition-colors">
                   <span className="material-symbols-outlined text-sm">filter_alt_off</span>
                   Clear all filters

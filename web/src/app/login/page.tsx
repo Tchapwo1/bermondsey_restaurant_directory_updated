@@ -1,18 +1,27 @@
 "use client"
-import { useState } from 'react';
+import { useState, Suspense, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-export default function LoginPage() {
+function LoginContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState<'login' | 'signup'>('login');
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Handle errors passed from middleware
+  useEffect(() => {
+    const urlError = searchParams.get('error');
+    if (urlError) {
+      setError(urlError);
+    }
+  }, [searchParams]);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -133,5 +142,13 @@ export default function LoginPage() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-background-dark font-black uppercase tracking-[0.2em] text-slate-400">Loading Bermondish...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

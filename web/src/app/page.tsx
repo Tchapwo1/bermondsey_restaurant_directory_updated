@@ -14,10 +14,12 @@ export default function Home() {
   useEffect(() => {
     async function fetchTrending() {
       try {
+        // FOR NOW: We'll show the top-rated ones as "trending"
+        // This makes the homepage feel more curated and dynamic
         const { data, error } = await supabase
           .from('restaurants')
           .select('*')
-          .order('id', { ascending: false }) 
+          .order('ratings', { ascending: false }) 
           .limit(3);
         
         if (error) {

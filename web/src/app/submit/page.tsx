@@ -22,8 +22,7 @@ export default function SubmitRestaurantPage() {
   };
 
   const uploadImages = async (folderName: string) => {
-    const urls: string[] = [];
-    for (const file of files) {
+    const uploadPromises = files.map(async (file) => {
       const fileName = `${folderName}/${Date.now()}-${file.name.replace(/\s+/g, '_')}`;
       const { data, error } = await supabase.storage
         .from('restaurant-images')
@@ -33,10 +32,14 @@ export default function SubmitRestaurantPage() {
         const { data: { publicUrl } } = supabase.storage
           .from('restaurant-images')
           .getPublicUrl(fileName);
-        urls.push(publicUrl);
+        return publicUrl;
       }
-    }
-    return urls;
+      console.error(`Error uploading ${file.name}:`, error);
+      return null;
+    });
+
+    const results = await Promise.all(uploadPromises);
+    return results.filter((url): url is string => url !== null);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

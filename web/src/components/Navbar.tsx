@@ -46,10 +46,10 @@ export default function Navbar() {
         
         {user ? (
           <div className="flex items-center gap-4 pl-4 border-l border-slate-100 dark:border-slate-800">
-             <div className="flex flex-col items-end">
-                <span className="text-[10px] font-black uppercase tracking-widest text-primary">Member</span>
+             <Link href="/favorites" className="flex flex-col items-end group">
+                <span className="text-[10px] font-black uppercase tracking-widest text-primary group-hover:underline">My Favorites</span>
                 <span className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[120px]">{user.email}</span>
-             </div>
+             </Link>
              <button 
               onClick={handleSignOut}
               className="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-red-500 transition-colors"
