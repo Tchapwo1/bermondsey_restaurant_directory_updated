@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase-server';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RestaurantCard from '@/components/RestaurantCard';
@@ -15,6 +15,7 @@ export default async function RestaurantsPage({
   searchParams: Promise<{ query?: string; category?: string; price?: string; sort?: string; view?: string }>;
 }) {
   const params = await searchParams;
+  const supabase = await createClient();
   const query = params.query;
   const category = params.category;
   const price = params.price ? parseInt(params.price) : undefined;

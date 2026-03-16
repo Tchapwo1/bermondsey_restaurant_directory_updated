@@ -17,61 +17,49 @@ export async function updateSession(request: NextRequest) {
           return request.cookies.get(name)?.value
         },
         set(name: string, value: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          })
+          request.cookies.set({ name, value, ...options })
           response = NextResponse.next({
             request: {
               headers: request.headers,
             },
           })
-          response.cookies.set({
-            name,
-            value,
-            ...options,
-          })
+          response.cookies.set({ name, value, ...options })
         },
         remove(name: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
+          request.cookies.set({ name, value: '', ...options })
           response = NextResponse.next({
             request: {
               headers: request.headers,
             },
           })
-          response.cookies.set({
-            name,
-            value: '',
-            ...options,
-          })
+          response.cookies.set({ name, value: '', ...options })
         },
       },
     }
   )
 
-  const { data: { user } } = await supabase.auth.getUser()
+  try {
+    const { data: { user } } = await supabase.auth.getUser()
 
-  // PROTECT /admin ROUTES
-  if (request.nextUrl.pathname.startsWith('/admin')) {
-    if (!user) {
-      return NextResponse.redirect(new URL('/login?error=Session Expired', request.url))
+    // PROTECT /admin ROUTES
+    if (request.nextUrl.pathname.startsWith('/admin')) {
+      if (!user) {
+        return NextResponse.redirect(new URL('/login?error=Session Expired', request.url))
+      }
+
+      // CHECK ROLE
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single()
+
+      if (!profile || profile.role !== 'admin') {
+        return NextResponse.redirect(new URL('/login?error=Access Denied', request.url))
+      }
     }
-
-    // CHECK ROLE
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', user.id)
-      .single()
-
-    if (!profile || profile.role !== 'admin') {
-      return NextResponse.redirect(new URL('/login?error=Access Denied: Admin only', request.url))
-    }
+  } catch (err) {
+    console.error('Middleware Error:', err)
   }
 
   return response

@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase-server';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { notFound } from 'next/navigation';
@@ -7,8 +7,9 @@ import ReviewsSection from '@/components/ReviewsSection';
 
 export const dynamic = 'force-dynamic';
 
-export default async function RestaurantProfile({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function RestaurantProfile({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {
+  const { slug } = await params;
+  const supabase = await createClient();
 
   const { data: restaurant, error } = await supabase
     .from('restaurants')
