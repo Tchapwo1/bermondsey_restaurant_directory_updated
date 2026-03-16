@@ -1,27 +1,71 @@
+"use client"
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
+  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.push('/');
+    router.refresh();
+  };
+
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 px-6 md:px-20 py-4 bg-white dark:bg-background-dark sticky top-0 z-50">
-      <div className="flex items-center gap-4 text-primary">
+      <Link href="/" className="flex items-center gap-4 text-primary hover:opacity-90 transition-opacity">
         <div className="size-6">
           <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"></path>
           </svg>
         </div>
         <h2 className="text-slate-900 dark:text-slate-100 text-xl font-black leading-tight tracking-tight uppercase">BERMONDISH</h2>
-      </div>
+      </Link>
       <div className="hidden md:flex flex-1 justify-end gap-8 items-center">
         <nav className="flex items-center gap-8">
-          <Link className="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="/restaurants">Restaurants</Link>
-          <Link className="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="/#categories">Categories</Link>
-          <Link className="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Events</Link>
-          <Link className="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="/about">About</Link>
-          <Link className="text-slate-700 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="/submit">List Restaurant</Link>
+          <Link className="text-slate-700 dark:text-slate-300 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/restaurants">Restaurants</Link>
+          <Link className="text-slate-700 dark:text-slate-300 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/#categories">Categories</Link>
+          <Link className="text-slate-700 dark:text-slate-300 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/about">About</Link>
+          <Link className="text-slate-700 dark:text-slate-300 text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="/submit">List Restaurant</Link>
         </nav>
-        <button className="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-          <span>Sign In</span>
-        </button>
+        
+        {user ? (
+          <div className="flex items-center gap-4 pl-4 border-l border-slate-100 dark:border-slate-800">
+             <div className="flex flex-col items-end">
+                <span className="text-[10px] font-black uppercase tracking-widest text-primary">Member</span>
+                <span className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[120px]">{user.email}</span>
+             </div>
+             <button 
+              onClick={handleSignOut}
+              className="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-red-500 transition-colors"
+              title="Sign Out"
+             >
+               <span className="material-symbols-outlined text-sm">logout</span>
+             </button>
+          </div>
+        ) : (
+          <Link 
+            href="/login"
+            className="flex min-w-[120px] cursor-pointer items-center justify-center rounded-xl h-11 px-6 bg-primary text-white text-xs font-black uppercase tracking-widest shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+          >
+            Sign In
+          </Link>
+        )}
       </div>
       <div className="md:hidden">
         <span className="material-symbols-outlined text-slate-900 dark:text-white">menu</span>
