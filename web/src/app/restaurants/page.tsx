@@ -49,10 +49,20 @@ export default async function RestaurantsPage({
     supabaseQuery = supabaseQuery.order('name', { ascending: true });
   }
 
-  const { data: restaurants, error } = await supabaseQuery;
+  let restaurants: any[] | null = null;
+  let errorMsg: string | null = null;
 
-  if (error) {
-    console.error('Error fetching restaurants:', error);
+  try {
+    const { data, error } = await supabaseQuery;
+    if (error) {
+      console.error('[RestaurantsPage] Supabase Error:', error);
+      errorMsg = error.message;
+    } else {
+      restaurants = data;
+    }
+  } catch (err) {
+    console.error('[RestaurantsPage] Unexpected Runtime Error:', err);
+    errorMsg = 'Failed to load restaurants. Please try again later.';
   }
 
   const getFilterUrl = (extraParams: Record<string, string | number | undefined | null>) => {
@@ -109,135 +119,146 @@ export default async function RestaurantsPage({
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar Filters */}
-          <aside className="w-full lg:w-64 shrink-0 space-y-8">
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/5 shadow-xl">
-              <h2 className="text-lg font-black mb-6 flex items-center gap-2 uppercase tracking-tight">
-                <span className="material-symbols-outlined text-primary">lunch_dining</span>
-                Cuisine
-              </h2>
-              <div className="space-y-3">
-                {['Italian', 'Spanish', 'French', 'Pubs', 'Japanese'].map(cuis => (
-                   <Link 
-                    key={cuis} 
-                    href={getFilterUrl({ category: category === cuis ? undefined : cuis })}
-                    className={`flex items-center gap-3 group transition-colors ${category === cuis ? 'text-primary font-bold' : 'text-slate-600 dark:text-slate-400'}`}
-                   >
-                    <div className={`size-2 rounded-full ${category === cuis ? 'bg-primary' : 'bg-slate-200 dark:bg-slate-700'} group-hover:bg-primary transition-colors`}></div>
-                    <span className="group-hover:text-primary transition-colors">{cuis}</span>
-                  </Link>
-                ))}
-              </div>
+        {errorMsg ? (
+          <div className="bg-red-50 border border-red-100 p-12 rounded-3xl text-center shadow-xl">
+            <div className="size-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="material-symbols-outlined text-4xl">warning</span>
             </div>
-
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/5 shadow-xl">
-              <h2 className="text-lg font-black mb-6 flex items-center gap-2 uppercase tracking-tight">
-                <span className="material-symbols-outlined text-primary">payments</span>
-                Price Range
-              </h2>
-              <div className="grid grid-cols-2 gap-2">
-                {[1, 2, 3, 4].map(p => (
-                  <Link 
-                    key={p} 
-                    href={getFilterUrl({ price: price === p ? undefined : p })}
-                    className={`py-2 text-center rounded-lg border transition-all text-xs font-bold uppercase tracking-widest ${price === p ? 'bg-primary text-white border-primary' : 'border-slate-100 dark:border-slate-800 hover:border-primary hover:text-primary'}`}
-                  >
-                    {'£'.repeat(p)}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {(query || category || price || (sort && sort !== 'name')) && (
-               <Link href="/restaurants" className="flex items-center justify-center gap-2 w-full py-3 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-slate-200 transition-colors">
-                 <span className="material-symbols-outlined text-sm">filter_alt_off</span>
-                 Clear all filters
-               </Link>
-            )}
-          </aside>
-
-          {/* Restaurant Grid */}
-          <div className="flex-1">
-            <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 bg-white dark:bg-slate-900/50 p-2 rounded-2xl border border-primary/5">
-              <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl">
-                 <Link 
-                  href={getFilterUrl({ view: 'grid' })}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${view === 'grid' ? 'bg-white dark:bg-slate-700 text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                 >
-                   <span className="material-symbols-outlined text-sm">grid_view</span>
-                   Grid
-                 </Link>
-                 <Link 
-                  href={getFilterUrl({ view: 'map' })}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${view === 'map' ? 'bg-white dark:bg-slate-700 text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                 >
-                   <span className="material-symbols-outlined text-sm">map</span>
-                   Map
-                 </Link>
-              </div>
-
-              <div className="flex items-center gap-6">
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                  <span className="text-primary">{restaurants?.length || 0}</span> results
-                </p>
-                <div className="flex items-center gap-2 border-l border-slate-200 dark:border-slate-800 pl-6">
-                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Sort:</span>
-                  <form action="/restaurants" method="get">
-                    {query && <input type="hidden" name="query" value={query} />}
-                    {category && <input type="hidden" name="category" value={category} />}
-                    {price && <input type="hidden" name="price" value={price} />}
-                    {view && <input type="hidden" name="view" value={view} />}
-                    <select 
-                      name="sort"
-                      onChange={(e) => e.target.form?.submit()}
-                      defaultValue={sort}
-                      className="bg-transparent border-none text-[10px] font-black uppercase tracking-widest focus:ring-0 cursor-pointer text-slate-900 dark:text-white py-1"
+            <h2 className="text-3xl font-black mb-4 uppercase text-red-900">Database Error</h2>
+            <p className="text-red-700 font-medium max-w-md mx-auto">{errorMsg}</p>
+            <button onClick={() => window.location.reload()} className="mt-10 inline-block px-10 py-4 bg-red-600 text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-xl shadow-red-200">Retry Connection</button>
+          </div>
+        ) : (
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Sidebar Filters */}
+            <aside className="w-full lg:w-64 shrink-0 space-y-8">
+              <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/5 shadow-xl">
+                <h2 className="text-lg font-black mb-6 flex items-center gap-2 uppercase tracking-tight">
+                  <span className="material-symbols-outlined text-primary">lunch_dining</span>
+                  Cuisine
+                </h2>
+                <div className="space-y-3">
+                  {['Italian', 'Spanish', 'French', 'Pubs', 'Japanese'].map(cuis => (
+                    <Link 
+                      key={cuis} 
+                      href={getFilterUrl({ category: category === cuis ? undefined : cuis })}
+                      className={`flex items-center gap-3 group transition-colors ${category === cuis ? 'text-primary font-bold' : 'text-slate-600 dark:text-slate-400'}`}
                     >
-                      <option value="name">Name (A-Z)</option>
-                      <option value="rating">Rating (High-Low)</option>
-                      <option value="rating_low">Rating (Low-High)</option>
-                    </select>
-                  </form>
+                      <div className={`size-2 rounded-full ${category === cuis ? 'bg-primary' : 'bg-slate-200 dark:bg-slate-700'} group-hover:bg-primary transition-colors`}></div>
+                      <span className="group-hover:text-primary transition-colors">{cuis}</span>
+                    </Link>
+                  ))}
                 </div>
               </div>
-            </div>
 
-            {view === 'map' ? (
-              <MapClient restaurants={restaurants || []} />
-            ) : (
-              <>
-                {restaurants && restaurants.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                    {restaurants.map((res) => (
-                      <RestaurantCard 
-                        key={res.id}
-                        id={res.id}
-                        name={res.name}
-                        slug={res.slug}
-                        cuisine={res.cuisine_type}
-                        priceRange={res.price_range}
-                        rating={res.ratings?.tripadvisor?.value || 4.5}
-                        coverImageUrl={res.cover_image_url}
-                        descriptionShort={res.description_short}
-                        neighborhood={res.neighbourhood}
-                      />
-                    ))}
+              <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-primary/5 shadow-xl">
+                <h2 className="text-lg font-black mb-6 flex items-center gap-2 uppercase tracking-tight">
+                  <span className="material-symbols-outlined text-primary">payments</span>
+                  Price Range
+                </h2>
+                <div className="grid grid-cols-2 gap-2">
+                  {[1, 2, 3, 4].map(p => (
+                    <Link 
+                      key={p} 
+                      href={getFilterUrl({ price: price === p ? undefined : p })}
+                      className={`py-2 text-center rounded-lg border transition-all text-xs font-bold uppercase tracking-widest ${price === p ? 'bg-primary text-white border-primary' : 'border-slate-100 dark:border-slate-800 hover:border-primary hover:text-primary'}`}
+                    >
+                      {'£'.repeat(p)}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {(query || category || price || (sort && sort !== 'name')) && (
+                <Link href="/restaurants" className="flex items-center justify-center gap-2 w-full py-3 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-slate-200 transition-colors">
+                  <span className="material-symbols-outlined text-sm">filter_alt_off</span>
+                  Clear all filters
+                </Link>
+              )}
+            </aside>
+
+            {/* Restaurant Grid */}
+            <div className="flex-1">
+              <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 bg-white dark:bg-slate-900/50 p-2 rounded-2xl border border-primary/5">
+                <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl">
+                  <Link 
+                    href={getFilterUrl({ view: 'grid' })}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${view === 'grid' ? 'bg-white dark:bg-slate-700 text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                  >
+                    <span className="material-symbols-outlined text-sm">grid_view</span>
+                    Grid
+                  </Link>
+                  <Link 
+                    href={getFilterUrl({ view: 'map' })}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${view === 'map' ? 'bg-white dark:bg-slate-700 text-primary shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                  >
+                    <span className="material-symbols-outlined text-sm">map</span>
+                    Map
+                  </Link>
+                </div>
+
+                <div className="flex items-center gap-6">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                    <span className="text-primary">{restaurants?.length || 0}</span> results
+                  </p>
+                  <div className="flex items-center gap-2 border-l border-slate-200 dark:border-slate-800 pl-6">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Sort:</span>
+                    <form action="/restaurants" method="get">
+                      {query && <input type="hidden" name="query" value={query} />}
+                      {category && <input type="hidden" name="category" value={category} />}
+                      {price && <input type="hidden" name="price" value={price} />}
+                      {view && <input type="hidden" name="view" value={view} />}
+                      <select 
+                        name="sort"
+                        onChange={(e) => e.target.form?.submit()}
+                        defaultValue={sort}
+                        className="bg-transparent border-none text-[10px] font-black uppercase tracking-widest focus:ring-0 cursor-pointer text-slate-900 dark:text-white py-1"
+                      >
+                        <option value="name">Name (A-Z)</option>
+                        <option value="rating">Rating (High-Low)</option>
+                        <option value="rating_low">Rating (Low-High)</option>
+                      </select>
+                    </form>
                   </div>
-                ) : (
-                  <div className="flex flex-col items-center justify-center py-24 text-center">
-                    <div className="bg-primary/5 p-6 rounded-full mb-6">
-                      <span className="material-symbols-outlined text-6xl text-primary/30">search_off</span>
+                </div>
+              </div>
+
+              {view === 'map' ? (
+                <MapClient restaurants={restaurants || []} />
+              ) : (
+                <>
+                  {restaurants && restaurants.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                      {restaurants.map((res) => (
+                        <RestaurantCard 
+                          key={res.id}
+                          id={res.id}
+                          name={res.name}
+                          slug={res.slug}
+                          cuisine={res.cuisine_type}
+                          priceRange={res.price_range}
+                          rating={res.ratings?.tripadvisor?.value || 4.5}
+                          coverImageUrl={res.cover_image_url}
+                          descriptionShort={res.description_short}
+                          neighborhood={res.neighbourhood}
+                        />
+                      ))}
                     </div>
-                    <h3 className="text-2xl font-black uppercase tracking-tight mb-2">No restaurants found</h3>
-                    <p className="text-slate-500 max-w-xs mx-auto">We couldn't find anything matching your search. Try a different keyword or browse all restaurants.</p>
-                    <Link href="/restaurants" className="mt-8 px-8 py-3 bg-primary text-white font-black rounded-xl uppercase tracking-widest text-xs shadow-lg shadow-primary/20">Back to all</Link>
-                  </div>
-                )}
-              </>
-            )}
+                  ) : (
+                    <div className="flex flex-col items-center justify-center py-24 text-center">
+                      <div className="bg-primary/5 p-6 rounded-full mb-6">
+                        <span className="material-symbols-outlined text-6xl text-primary/30">search_off</span>
+                      </div>
+                      <h3 className="text-2xl font-black uppercase tracking-tight mb-2">No restaurants found</h3>
+                      <p className="text-slate-500 max-w-xs mx-auto">We couldn't find anything matching your search. Try a different keyword or browse all restaurants.</p>
+                      <Link href="/restaurants" className="mt-8 px-8 py-3 bg-primary text-white font-black rounded-xl uppercase tracking-widest text-xs shadow-lg shadow-primary/20">Back to all</Link>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </main>
       <Footer />
     </div>

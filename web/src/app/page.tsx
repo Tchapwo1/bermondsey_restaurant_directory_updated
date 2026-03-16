@@ -13,14 +13,20 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchTrending() {
-      const { data, error } = await supabase
-        .from('restaurants')
-        .select('*')
-        .order('id', { ascending: false }) 
-        .limit(3);
-      
-      if (!error && data) {
-        setTrendingRestaurants(data);
+      try {
+        const { data, error } = await supabase
+          .from('restaurants')
+          .select('*')
+          .order('id', { ascending: false }) 
+          .limit(3);
+        
+        if (error) {
+          console.error('[Home] Supabase Error fetching trending:', error);
+        } else if (data) {
+          setTrendingRestaurants(data);
+        }
+      } catch (err) {
+        console.error('[Home] Unexpected error fetching trending:', err);
       }
     }
     fetchTrending();

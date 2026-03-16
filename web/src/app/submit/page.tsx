@@ -59,7 +59,13 @@ export default function SubmitRestaurantPage() {
       description_short: formData.get('description'),
       cover_image_url: uploadedUrls[0] || 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4',
       gallery_images: uploadedUrls,
-      status: 'pending'
+      status: 'pending',
+      owner_name: formData.get('owner_name'),
+      owner_email: formData.get('owner_email'),
+      phone: formData.get('phone'),
+      website_url: formData.get('website_url'),
+      booking_url: formData.get('booking_url'),
+      opening_hours: formData.get('opening_hours')
     };
 
     const { error } = await supabase.from('restaurants').insert([data]);
@@ -92,6 +98,7 @@ export default function SubmitRestaurantPage() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-10">
+            {/* Basic Info */}
             <div className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-primary/5 shadow-2xl space-y-8">
               <h3 className="text-xl font-black uppercase tracking-tight border-b border-slate-50 dark:border-slate-800 pb-4 flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary">restaurant_menu</span>
@@ -100,29 +107,45 @@ export default function SubmitRestaurantPage() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Restaurant Name</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Restaurant Name *</label>
                   <input name="name" required className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="text" placeholder="e.g. The Bermondsey Bistro" />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Cuisine Type</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Cuisine Type *</label>
                   <select name="cuisine" required className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20">
                     <option value="Italian">Italian</option>
+                    <option value="Pubs">Pubs</option>
+                    <option value="Fine Dining">Fine Dining</option>
+                    <option value="Bakeries">Bakeries</option>
+                    <option value="Coffee Shops">Coffee Shops</option>
+                    <option value="Wine Bars">Wine Bars</option>
                     <option value="Spanish">Spanish</option>
+                    <option value="French">French</option>
                     <option value="British">British</option>
                     <option value="Japanese">Japanese</option>
-                    <option value="Mexican">Mexican</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Address</label>
-                <input name="address" required className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="text" placeholder="123 Bermondsey Street, SE1" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Phone Number *</label>
+                  <input name="phone" required className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="tel" placeholder="+44 20 7123 4567" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Opening Hours *</label>
+                  <input name="opening_hours" required className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="text" placeholder="Mon-Sun: 12pm - 11pm" />
+                </div>
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Price Range</label>
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Address *</label>
+                <input name="address" required className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="text" placeholder="123 Bermondsey Street, SE1 3UW" />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Price Range *</label>
                 <div className="flex gap-4">
                   {[1, 2, 3, 4].map(p => (
                     <label key={p} className="flex-1">
@@ -136,11 +159,53 @@ export default function SubmitRestaurantPage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Short Description</label>
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Short Description *</label>
                 <textarea name="description" required rows={4} className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" placeholder="Tell diners what makes your SE1 spot unique..."></textarea>
               </div>
             </div>
 
+            {/* Online Presence */}
+            <div className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-primary/5 shadow-2xl space-y-8">
+              <h3 className="text-xl font-black uppercase tracking-tight border-b border-slate-50 dark:border-slate-800 pb-4 flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary">language</span>
+                Online Presence
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Website URL</label>
+                  <input name="website_url" className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="url" placeholder="https://www.yourrestuarant.com" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Booking URL</label>
+                  <input name="booking_url" className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="url" placeholder="https://www.opentable.com/..." />
+                </div>
+              </div>
+            </div>
+
+            {/* Ownership */}
+            <div className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-primary/5 shadow-2xl space-y-8">
+              <h3 className="text-xl font-black uppercase tracking-tight border-b border-slate-50 dark:border-slate-800 pb-4 flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary">verified_user</span>
+                Ownership Details
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Owner Name *</label>
+                  <input name="owner_name" required className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="text" placeholder="John Doe" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Owner Email *</label>
+                  <input name="owner_email" required className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="email" placeholder="owner@example.com" />
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Create Verification Password *</label>
+                <input name="password" required className="rounded-xl border-none bg-slate-50 dark:bg-slate-800 py-3.5 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20" type="password" placeholder="••••••••" />
+                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1 italic">Used for future listing updates.</p>
+              </div>
+            </div>
+
+            {/* Visuals */}
             <div className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-primary/5 shadow-2xl space-y-8">
               <h3 className="text-xl font-black uppercase tracking-tight border-b border-slate-50 dark:border-slate-800 pb-4 flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary">add_a_photo</span>
