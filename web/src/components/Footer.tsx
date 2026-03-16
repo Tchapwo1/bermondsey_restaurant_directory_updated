@@ -20,8 +20,8 @@ export default function Footer() {
           <ul className="space-y-4 text-slate-400 text-sm font-medium">
             <li><Link className="hover:text-primary transition-colors" href="/restaurants">Find Restaurants</Link></li>
             <li><Link className="hover:text-primary transition-colors" href="/about">Our Story</Link></li>
-            <li><Link className="hover:text-primary transition-colors" href="/submit">Add Business</Link></li>
-            <li><Link className="hover:text-primary transition-colors" href="/contact">Contact Us</Link></li>
+            <li><Link className="hover:text-primary transition-colors" href="/submit">List Restaurant</Link></li>
+            <li><Link className="hover:text-primary transition-colors" href="/contact">Contact Support</Link></li>
             <li><Link className="hover:text-primary transition-colors opacity-50 hover:opacity-100" href="/admin">Admin Console</Link></li>
           </ul>
         </div>
