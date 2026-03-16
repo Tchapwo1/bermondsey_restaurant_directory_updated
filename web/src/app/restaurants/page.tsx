@@ -4,6 +4,8 @@ import Footer from '@/components/Footer';
 import RestaurantCard from '@/components/RestaurantCard';
 import Link from 'next/link';
 import MapClient from '@/components/MapClient';
+import SortSelect from '@/components/SortSelect';
+import RefetchButton from '@/components/RefetchButton';
 
 // No longer needs local dynamicImport as it's handled in MapClient
 
@@ -126,7 +128,7 @@ export default async function RestaurantsPage({
             </div>
             <h2 className="text-3xl font-black mb-4 uppercase text-red-900">Database Error</h2>
             <p className="text-red-700 font-medium max-w-md mx-auto">{errorMsg}</p>
-            <button onClick={() => window.location.reload()} className="mt-10 inline-block px-10 py-4 bg-red-600 text-white font-black uppercase tracking-widest text-xs rounded-xl shadow-xl shadow-red-200">Retry Connection</button>
+            <RefetchButton />
           </div>
         ) : (
           <div className="flex flex-col lg:flex-row gap-8">
@@ -203,22 +205,7 @@ export default async function RestaurantsPage({
                   </p>
                   <div className="flex items-center gap-2 border-l border-slate-200 dark:border-slate-800 pl-6">
                     <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Sort:</span>
-                    <form action="/restaurants" method="get">
-                      {query && <input type="hidden" name="query" value={query} />}
-                      {category && <input type="hidden" name="category" value={category} />}
-                      {price && <input type="hidden" name="price" value={price} />}
-                      {view && <input type="hidden" name="view" value={view} />}
-                      <select 
-                        name="sort"
-                        onChange={(e) => e.target.form?.submit()}
-                        defaultValue={sort}
-                        className="bg-transparent border-none text-[10px] font-black uppercase tracking-widest focus:ring-0 cursor-pointer text-slate-900 dark:text-white py-1"
-                      >
-                        <option value="name">Name (A-Z)</option>
-                        <option value="rating">Rating (High-Low)</option>
-                        <option value="rating_low">Rating (Low-High)</option>
-                      </select>
-                    </form>
+                    <SortSelect defaultValue={sort} />
                   </div>
                 </div>
               </div>
