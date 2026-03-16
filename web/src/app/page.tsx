@@ -12,6 +12,14 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
+    // Check for auth code in URL (Supabase sometimes redirects to root)
+    const url = new URL(window.location.href);
+    const code = url.searchParams.get('code');
+    if (code) {
+      router.push(`/auth/callback${window.location.search}`);
+      return;
+    }
+
     async function fetchTrending() {
       try {
         // FOR NOW: We'll show the top-rated ones as "trending"

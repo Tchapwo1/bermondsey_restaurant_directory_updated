@@ -24,17 +24,10 @@ export default async function RestaurantProfile({ params }: { params: Promise<{ 
   const priceSymbol = '£'.repeat(restaurant.price_range || 2);
   const rating = restaurant.ratings?.tripadvisor?.value || "4.8";
 
-  // Gallery images from DB or fallbacks
+  // Gallery images from DB or cover fallback
   const galleryImages = restaurant.gallery_images?.length > 0 
     ? [...new Set([restaurant.cover_image_url, ...restaurant.gallery_images])]
-    : [
-        restaurant.cover_image_url,
-        "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1550966841-3ee3ad359051?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1534422298391-e4f8c170db76?auto=format&fit=crop&q=80&w=800",
-        "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&q=80&w=800"
-      ];
+    : [restaurant.cover_image_url];
 
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark">

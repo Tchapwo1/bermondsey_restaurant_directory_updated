@@ -6,15 +6,37 @@ import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    async function getSession() {
+      const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
-    });
+      if (session?.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', session.user.id)
+          .single();
+        setIsAdmin(profile?.role === 'admin');
+      }
+    }
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    getSession();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setUser(session?.user ?? null);
+      if (session?.user) {
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('role')
+          .eq('id', session.user.id)
+          .single();
+        setIsAdmin(profile?.role === 'admin');
+      } else {
+        setIsAdmin(false);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -46,6 +68,11 @@ export default function Navbar() {
         
         {user ? (
           <div className="flex items-center gap-4 pl-4 border-l border-slate-100 dark:border-slate-800">
+             {isAdmin && (
+               <Link href="/admin" className="px-4 py-2 rounded-lg bg-orange-50 text-orange-600 text-[10px] font-black uppercase tracking-widest border border-orange-100 hover:bg-orange-100 transition-colors">
+                 Admin Dashboard
+               </Link>
+             )}
              <Link href="/favorites" className="flex flex-col items-end group">
                 <span className="text-[10px] font-black uppercase tracking-widest text-primary group-hover:underline">My Favorites</span>
                 <span className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[120px]">{user.email}</span>
