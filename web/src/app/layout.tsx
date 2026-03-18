@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./globals.css";
 
+import ConciergeChat from '@/components/ConciergeChat';
+
 const workSans = Work_Sans({
   variable: "--font-work-sans",
   subsets: ["latin"],
@@ -52,6 +54,7 @@ export default function RootLayout({
         className={`${workSans.variable} font-sans antialiased bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen`}
       >
         {children}
+        <ConciergeChat />
       </body>
     </html>
   );

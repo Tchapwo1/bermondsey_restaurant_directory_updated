@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import ReviewsSection from '@/components/ReviewsSection';
+import BookButton from '@/components/BookButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -87,14 +88,7 @@ export default async function RestaurantProfile({ params }: { params: Promise<{ 
                 </div>
               </div>
               <div className="w-full md:w-auto">
-                <a 
-                  href={restaurant.google_maps_link} 
-                  target="_blank"
-                  className="w-full md:min-w-[240px] bg-primary text-white font-black py-5 px-8 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 uppercase tracking-widest text-sm"
-                >
-                  <span className="material-symbols-outlined">calendar_month</span>
-                  Book a Table
-                </a>
+                <BookButton restaurantId={restaurant.id} bookingUrl={restaurant.google_maps_link} />
               </div>
             </div>
 

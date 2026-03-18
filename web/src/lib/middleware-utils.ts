@@ -42,9 +42,10 @@ export async function updateSession(request: NextRequest) {
     // PROTECT ROUTES
     const isFavoritesRoute = request.nextUrl.pathname.startsWith('/favorites')
     const isAdminRoute = request.nextUrl.pathname.startsWith('/admin')
+    const isDashboardRoute = request.nextUrl.pathname.startsWith('/dashboard')
 
-    if (isFavoritesRoute || isAdminRoute) {
-      // REQUIRE LOGGED IN USER FOR BOTH
+    if (isFavoritesRoute || isAdminRoute || isDashboardRoute) {
+      // REQUIRE LOGGED IN USER FOR ALL
       if (userError || !user) {
         return NextResponse.redirect(new URL('/login?error=Session Expired', request.url))
       }
